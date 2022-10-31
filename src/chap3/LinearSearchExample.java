@@ -1,12 +1,14 @@
 package chap3;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class LinearSearchExample {
     public static void main(String[] args) {
 
 //        mainInput1();
-        mainInput2();
+//        mainInput2();
+        mainInput3();
 
     }
 
@@ -112,6 +114,53 @@ public class LinearSearchExample {
         return index == num? -1: index;
     }
 
+    private static int hw3_2(int[] arr, int num, int key) {
+        int index = 0;
+        arr[num] = key; // 보초
 
+        StringBuilder result = new StringBuilder("   |");
+        StringBuilder sb2 = new StringBuilder();
+        for (int i = 0; i < num; i++) {
+            result.append("  " + i);
+            sb2.append("  " + arr[i]);
+        }
+
+        result.append("\n");
+        result.append("---+" + "---".repeat(num + 1) + "\n");
+
+        boolean find = false;
+        for (; ; index++) {
+            result.append("   |" + " ".repeat(3 * (index + 1) - 1) + "* \n");
+            result.append("  " + index + "|" + sb2.toString() + "\n");
+//            result.append("  " + index + "|" + sb2.substring(0, 3 * (index + 1)) + "\n");
+            if (arr[index] == key)
+                break;
+        }
+
+        System.out.println(result.toString());
+
+        return index == num ? -1 : index;
+    }
+
+
+    private static void mainInput3() {
+
+        int index = hw3_3(new int[]{1,9,2,9,4,6,7,9 }, 8, 9, new int[8]);
+
+        System.out.println(index);
+    }
+
+
+    private static int hw3_3(int[] a, int n, int key, int[] idx) {
+        int idxIndex = 0;
+
+        for(int i=0; i<n; i++) {
+            if(a[i] == key)
+                idx[idxIndex++] = i;
+        }
+        System.out.println(Arrays.toString(idx));
+
+        return idxIndex;
+    }
 }
 
